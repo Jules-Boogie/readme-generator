@@ -58,14 +58,12 @@ inquirer
             type: "input",
             message: "what is the github repo of the project?",
             name: "repo"
-        }
+        },
         {
             type: "editor",
             message: "Please enter questions?",
             name: "question"
         }
-
-
     ]).then(input => {
 
         const gitUrl = "https://api.github.com/users/" + input.username;
@@ -78,7 +76,7 @@ inquirer
 
             let userInfo = gitName + "\n" + profPic + "\n" + userEmail + "\n" + userBio + "\n" + userLocation
 
-            fs.writeFile("userproject.md", userInfo, error => {
+            fs.appendFile("userproject.md", userInfo, error => {
                 if (error) {
                     console.log("Unfortunately your request was invalid!")
                 } else {
@@ -92,18 +90,18 @@ inquirer
 
         })
 
-        let projTitle = input.title;
-        let projDes = input.description;
-        let projCont = input.contents;
-        let projInst = input.installation;
-        let projUs = input.usage;
-        let projContr = input.contributors;
-        let projRepo = input.repo;
-        let projQA = input.question;
+        let projTitle = "## Title" + '\n' + input.title;
+        let projDes = "## Description" + "\n" + input.description;
+        let projCont = "## Contents" + "\n" + input.contents;
+        let projInst = "## Installation" + "\n" + input.installation;
+        let projUs = "## Usage" + "\n" + input.usage;
+        let projContr = "## Contributors" + "\n" + input.contributors;
+        let projRepo = "## Project Repository" + "\n" + input.repo;
+        let projQA = "## Questions" + "\n" + input.question;
 
-        let projInfo = projTitle + "\n" + projDes + "\n" +  projCont + "\n" + projInst + "\n" + projUs + "\n" + projContr + "\n" + projRepo + "\n" + projQA
+        let projInfo = projTitle + "\n" + projDes + "\n" + projCont + "\n" + projInst + "\n" + projUs + "\n" + projContr + "\n" + projRepo + "\n" + projQA
 
-        fs.appendFile("userproject.md",projInfo, error => {
+        fs.appendFile("userproject.md", projInfo, error => {
             if (error) {
                 console.log("Unfortunately your request was invalid!")
             } else {
@@ -111,7 +109,7 @@ inquirer
             }
 
 
-        } )
+        })
 
 
 
@@ -126,8 +124,4 @@ inquirer
 
 
 
-function init() {
 
-}
-
-init();
