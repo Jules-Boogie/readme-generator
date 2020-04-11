@@ -13,14 +13,14 @@ inquirer
     const gitUrl = "https://api.github.com/users/" + input.username;
     axios.get(gitUrl).then(response => {
         let gitName = "# <span style='color:" + input.color + ";'>" + response.data.name + "</span>"
-        let profPic = "![profile](" + response.data.avatar_url+")";
+        let profPic = response.data.avatar_url;
         let userEmail = "Github Email: " + response.data.email;
         let userBio = "About User:" + response.data.bio;
         let userLocation = "Location:" + response.data.location
 
         let userInfo = gitName + '/n'+ profPic + "/n" + userEmail + "/n" + userBio + "/n" + userLocation
         
-        fs.writeToFile(userprofile.md, userInfo => {
+        fs.writeFile("userprofile.md", userInfo, error => {
             if(error){
                 console.log("Unfornately your request was invalid!")
             } else{
