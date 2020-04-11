@@ -1,6 +1,8 @@
 const axios = require("axios"); // npm install axios
 const inquirer = require("inquirer"); /// npm install inquirer
 const fs = require("fs");
+const path = require("path")
+
 
 inquirer
     .prompt([
@@ -14,30 +16,35 @@ inquirer
         {
             type: "input",
             message: "what is the title of your project?",
+            default:"none",
             name: "title"
 
         },
         {
             type: "editor",
             message: "Please enter project discription?",
+            default: "none",
             name: "description"
 
         },
         {
             type: "editor",
             message: "Please enter installation?",
+            default: "none",
             name: "installation"
 
         },
         {
             type: "editor",
             message: "Please enter table of contents?",
+            default: "none",
             name: "contents"
 
         },
         {
             type: "editor",
             message: "what apps did you use for your project?",
+            default: "none",
             name: "usage"
 
         },
@@ -50,77 +57,126 @@ inquirer
         {
             type: "editor",
             message: "who did you work with on this project?",
-            name: "contributors"
+            default: "none",
+            name: "contributoring"
 
 
         },
         {
             type: "input",
             message: "what is the github repo of the project?",
+            default: "none",
             name: "repo"
         },
         {
             type: "editor",
+            message: "Please enter Test?",
+            default: "none",
+            name: "test"
+        }
+        {
+            type: "editor",
             message: "Please enter questions?",
+            default: "none",
             name: "question"
         }
     ]).then(input => {
 
         const gitUrl = "https://api.github.com/users/" + input.username;
         axios.get(gitUrl).then(response => {
-            let gitName = "# <span style='color:" + input.color + ";'>" + response.data.name + "</span>"
-            let profPic = "![profile](" + response.data.avatar_url + ")";
-            let userEmail = "Github Email: " + response.data.email;
-            let userBio = "About User:" + response.data.bio;
-            let userLocation = "Location:" + response.data.location
 
-            let userInfo = gitName + "\n" + profPic + "\n" + userEmail + "\n" + userBio + "\n" + userLocation
+            //call getReadMeTExt 
+        
 
-            fs.appendFile("userproject.md", userInfo, error => {
-                if (error) {
-                    console.log("Unfortunately your request was invalid!")
-                } else {
-                    console.log("I found the user Profile!")
-                }
+            var data = {...input, ...response.data};
 
-
-
-            })
-
-
-        })
-
-        let projTitle = "## Title" + '\n' + input.title;
-        let projDes = "## Description" + "\n" + input.description;
-        let projCont = "## Contents" + "\n" + input.contents;
-        let projInst = "## Installation" + "\n" + input.installation;
-        let projUs = "## Usage" + "\n" + input.usage;
-        let projContr = "## Contributors" + "\n" + input.contributors;
-        let projRepo = "## Project Repository" + "\n" + input.repo;
-        let projQA = "## Questions" + "\n" + input.question;
-
-        let projInfo = projTitle + "\n" + projDes + "\n" + projCont + "\n" + projInst + "\n" + projUs + "\n" + projContr + "\n" + projRepo + "\n" + projQA
-
-        fs.appendFile("userproject.md", projInfo, error => {
-            if (error) {
-                console.log("Unfortunately your request was invalid!")
-            } else {
-                console.log("added project info to .md file!")
-            }
-
-
-        })
-
-
-
-
+            var text = getReadMeBodyText(data)
+            writeFile("read.md", text)
+        });
 
     })
 
 
+    function writeFile(fileName, readMeText){
+        return fs.writeFileSync(fileName, readMeText);
+    }
 
 
 
+function getReadMeBodyText(data){
+   
+    const projectTitle = data.title.toLowerCase().split(" ").join("-");
+  let projectUrl = `https://github.com/${data.github}/${projectTitle}`;
+  let license ='';
+  let licenseBadge ='';
+ 
+  if (data.license !== "None") {
+    licenseBadge =  `[![GitHub license](https://img.shields.io/badge/license-${data.license}-blue.svg)](${projectUrl})`;
+    license =   `## License
+
+    This project is licensed under the ${license} license.`
+
+  }
+
+    return `
+       
+
+# ${data.title}
+${licenseBadge}
+
+## Description
+
+${data.description}
+
+## Table of Contents 
+
+* [Installation](#installation)
+
+* [Usage](#usage)
+
+* [License](#license)
+
+* [Contributing](#contributing)
+
+* [Tests](#tests)
+
+* [Questions](#questions)
+
+## Installation
+
+To install necessary dependencies, run the following command:
+
+\`\`\`
+${data.installation}
+\`\`\`
+
+## Usage
+
+${data.usage}
+
+${license}
+  
+## Contributing
+
+${data.contributing}
+
+## Tests
+
+To run tests, run the following command:
+
+\`\`\`
+${data.test}
+\`\`\`
+
+## Questions
+
+<img src="${data.avatar_url}" alt="avatar" style="border-radius: 16px" width="30" />
+
+If you have any questions about the repo, open an issue or contact [${data.github}](${data.url}) directly at ${data.email}.
+
+
+    `;
+}
 
 
 
