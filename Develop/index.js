@@ -73,7 +73,7 @@ inquirer
             message: "Please enter Test?",
             default: "none",
             name: "test"
-        }
+        },
         {
             type: "editor",
             message: "Please enter questions?",

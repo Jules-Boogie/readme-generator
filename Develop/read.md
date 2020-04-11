@@ -1,7 +1,7 @@
 
        
 
-# none
+# Badge
 [![GitHub license](https://img.shields.io/badge/license-MIT License-blue.svg)](https://github.com/undefined/none)
 
 ## Description
@@ -47,7 +47,7 @@ undefined
 To run tests, run the following command:
 
 ```
-undefined
+none
 ```
 
 ## Questions
