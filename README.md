@@ -103,3 +103,15 @@ You are required to submit the following:
 
 - - -
 © 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
+
+const { BadgeFactory } = require('gh-badges')
+
+const bf = new BadgeFactory()
+
+const format = {
+  text: ['build', 'passed'],
+  color: 'green',
+  template: 'flat',
+}
+
+const createBadge = bf.create(format)
