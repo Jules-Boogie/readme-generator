@@ -1,12 +1,15 @@
 # Readme-generator
 
-## ReadMe Generator Gif
+## ReadMe Generator Video
 
-[![site gif]({image-url})]({https://github.com/Jules-Boogie/readme-generator/blob/master/Develop/app.mp4} "Readme")
+[![site gif]({https://github.com/Jules-Boogie/readme-generator/blob/master/Develop/Capture.PNG})]({https://github.com/Jules-Boogie/readme-generator/blob/master/Develop/bandicam%202020-04-11%2017-14-26-539.mp4} "Readme")
+
 
 
 
 ## ReadMe Generator Preview PIC
+
+![Site Photo](https://github.com/Jules-Boogie/readme-generator/blob/master/Develop/Capture.PNG)
 
 
 
