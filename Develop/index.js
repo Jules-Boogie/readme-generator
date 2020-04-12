@@ -16,7 +16,7 @@ inquirer
         {
             type: "input",
             message: "what is the title of your project?",
-            default:"none",
+            default:"Homework 09",
             name: "title"
 
         },
