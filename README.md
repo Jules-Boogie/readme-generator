@@ -14,10 +14,19 @@
 
 
 ## Technologies Used
-[ES6-JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
+[ES6-JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)  
+
+
 [Nodejs](https://nodejs.org/en/docs/)
+
+
 [Axios](https://github.com/axios/axios)
+
+
 [Inquirer](https://www.npmjs.com/package/inquirer/v/0.2.3)
+
+
 [MarkDown](https://www.markdownguide.org/) 
 
 
