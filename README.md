@@ -2,9 +2,12 @@
 
 ## ReadMe Generator Gif
 
+[![site gif]({image-url})]({https://github.com/Jules-Boogie/readme-generator/blob/master/Develop/app.mp4} "Readme")
+
 
 
 ## ReadMe Generator Preview PIC
+
 
 
 ## Technologies Used
