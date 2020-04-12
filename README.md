@@ -1,7 +1,8 @@
 # Readme-generator
 
 ## ReadMe Generator Gif
-![site gif](https://github.com/Jules-Boogie/readme-generator/blob/master/Develop/app.mp4)
+
+[![site gif]({image-url})]({https://github.com/Jules-Boogie/readme-generator/blob/master/Develop/app.mp4} "Readme")
 
 
 
