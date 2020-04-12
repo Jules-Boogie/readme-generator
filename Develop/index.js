@@ -58,7 +58,7 @@ inquirer
             type: "editor",
             message: "who did you work with on this project?",
             default: "none",
-            name: "contributoring"
+            name: "contributing"
 
 
         },
